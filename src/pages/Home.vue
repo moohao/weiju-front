@@ -1,62 +1,51 @@
 <template>
   <div class="layout">
     <Layout>
-      <Header>
-        <Menu mode="horizontal" theme="dark" active-name="1">
-          <div class="layout-logo"></div>
-          <div class="layout-nav">
-            <MenuItem name="1">
-              <Icon type="ios-navigate"></Icon>
-              Item 1
-            </MenuItem>
-            <MenuItem name="2">
-              <Icon type="ios-keypad"></Icon>
-              Item 2
-            </MenuItem>
-            <MenuItem name="3">
-              <Icon type="ios-analytics"></Icon>
-              Item 3
-            </MenuItem>
-            <MenuItem name="4">
-              <Icon type="ios-paper"></Icon>
-              Item 4
-            </MenuItem>
-          </div>
-        </Menu>
+      <Header :style="{background: '#fff'}">
+        <Row>
+          <Col span="3">
+            <img src="../assets/logo.png" height="60px">
+          </Col>
+          <Col span="17">
+            <h1>微聚</h1>
+          </Col>
+          <Col span="1">
+            <Badge dot>
+              <Icon type="ios-bell-outline" size="20"></Icon>
+            </Badge>
+          </Col>
+          <Col span="3">
+          <Dropdown>
+            <a href="javascript:void(0)">
+              admin@qq.com
+              <Icon type="arrow-down-b"></Icon>
+            </a>
+            <DropdownMenu slot="list">
+              <DropdownItem><router-link to="/login">退出</router-link></DropdownItem>
+              <DropdownItem>修改</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+          </Col>
+        </Row>
       </Header>
       <Layout>
-        <Sider hide-trigger :style="{background: '#fff'}">
-          <Menu active-name="1-2" theme="light" width="auto" :open-names="['1']">
-            <Submenu name="1">
-              <template slot="title">
-                <Icon type="ios-navigate"></Icon>
-                Item 1
-              </template>
-              <MenuItem name="1-1">Option 1</MenuItem>
-              <MenuItem name="1-2">Option 2</MenuItem>
-              <MenuItem name="1-3">Option 3</MenuItem>
-            </Submenu>
-            <Submenu name="2">
-              <template slot="title">
-                <Icon type="ios-keypad"></Icon>
-                Item 2
-              </template>
-              <MenuItem name="2-1">Option 1</MenuItem>
-              <MenuItem name="2-2">Option 2</MenuItem>
-            </Submenu>
-            <Submenu name="3">
-              <template slot="title">
-                <Icon type="ios-analytics"></Icon>
-                Item 3
-              </template>
-              <MenuItem name="3-1">Option 1</MenuItem>
-              <MenuItem name="3-2">Option 2</MenuItem>
-            </Submenu>
+        <Sider hide-trigger :style="{minHeight: '92vh'}">
+          <Menu active-name="1" theme="dark" width="auto">
+            <MenuGroup title="平台管理">
+              <MenuItem name="1" @click.native="linkPage(1)">
+                <Icon type="person-stalker"></Icon>
+                  运营者管理
+              </MenuItem>
+              <MenuItem name="2" @click.native="linkPage(2)">
+                <Icon type="chatbubbles"></Icon>
+                  微信公众号管理
+              </MenuItem>
+            </MenuGroup>
           </Menu>
         </Sider>
         <Layout :style="{padding: '0 24px 24px'}">
           <Content :style="{padding: '24px', margin: '24px 0', minHeight: '650px', background: '#fff'}">
-            Content
+            <router-view></router-view>
           </Content>
         </Layout>
       </Layout>
@@ -65,22 +54,18 @@
 </template>
 
 <script>
-import { Layout, Header, MenuItem, Icon, Sider, Menu, Submenu, Breadcrumb, BreadcrumbItem, Content } from 'iview'
 export default {
-  components: {
-    Layout,
-    Header,
-    MenuItem,
-    Icon,
-    Sider,
-    Menu,
-    Submenu,
-    Breadcrumb,
-    BreadcrumbItem,
-    Content
-  },
   data () {
     return {
+    }
+  },
+  methods: {
+    linkPage (name) {
+      if (name === 1) {
+        this.$router.push('/operators')
+      } else if (name === 2) {
+        this.$router.push('/wechatinfos')
+      }
     }
   }
 }
