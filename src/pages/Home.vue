@@ -7,7 +7,7 @@
             <img src="../assets/logo.png" height="60px">
           </Col>
           <Col span="17">
-            <h1>微聚</h1>
+            <h1>微聚-微信公众号管理平台</h1>
           </Col>
           <Col span="1">
             <Badge dot>
@@ -30,13 +30,19 @@
       </Header>
       <Layout>
         <Sider hide-trigger :style="{minHeight: '92vh'}">
-          <Menu active-name="1" theme="dark" width="auto">
+          <Menu :active-name="this.$route.name" theme="dark" width="auto">
+            <MenuGroup title="图表数据">
+              <MenuItem name="Chart" @click.native="linkPage('Chart')">
+                <Icon type="pie-graph"></Icon>
+                  控制面板
+              </MenuItem>
+            </MenuGroup>
             <MenuGroup title="平台管理">
-              <MenuItem name="1" @click.native="linkPage(1)">
+              <MenuItem name="OperatorTable" @click.native="linkPage('OperatorTable')">
                 <Icon type="person-stalker"></Icon>
                   运营者管理
               </MenuItem>
-              <MenuItem name="2" @click.native="linkPage(2)">
+              <MenuItem name="WeChatInfoTable" @click.native="linkPage('WeChatInfoTable')">
                 <Icon type="chatbubbles"></Icon>
                   微信公众号管理
               </MenuItem>
@@ -61,10 +67,12 @@ export default {
   },
   methods: {
     linkPage (name) {
-      if (name === 1) {
+      if (name === 'OperatorTable') {
         this.$router.push('/operators')
-      } else if (name === 2) {
+      } else if (name === 'WeChatInfoTable') {
         this.$router.push('/wechatinfos')
+      } else if (name === 'Chart') {
+        this.$router.push('/chart')
       }
     }
   }

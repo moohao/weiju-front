@@ -1,22 +1,151 @@
 <template>
   <div class="wechatinfo">
-    <h1>wechatinfo</h1>
+    <Row>
+        <Col span="22">
+          <Input placeholder="输入搜索内容" style="width: 200px"></Input>
+          <Button type="ghost" icon="ios-search">搜索</Button>
+        </Col>
+        <Col span="2">
+        </Col>
+    </Row>
+    <Table border :columns="columns" :data="wechatinfos" :stripe="true" class="table"></Table>
+    <Modal
+      v-model="modal"
+      title="删除公众号"
+      @on-ok="ok"
+      @on-cancel="cancel">
+      <p>是否需要删除此公众号？</p>
+    </Modal>
+    <Page :total="total" show-elevator :current="current_page" @on-change="pageChange" show-total style="text-align: right;margin-top: 20px;"></Page>
   </div>
 </template>
 
 <script>
-// import { Layout, Header, MenuItem, Icon, Sider, Menu, Submenu, Breadcrumb, BreadcrumbItem, Content, MenuGroup } from 'iview'
 export default {
-  components: {
-  },
   data () {
     return {
+      columns: [
+        {
+          title: '公众号名称',
+          key: 'nick_name'
+        },
+        {
+          title: 'APPID',
+          key: 'authorizer_appid'
+        },
+        {
+          title: '运营者',
+          key: 'operators'
+        },
+        {
+          title: '关注人数',
+          key: 'follower_count',
+          sortable: true
+        },
+        {
+          title: '认证到期时间',
+          key: 'renzheng_time',
+          sortable: true
+        },
+        {
+          title: '公众号网址',
+          key: 'url_address'
+        },
+        {
+          title: '网站检测字符',
+          key: 'check_strings'
+        },
+        {
+          title: '网站状态',
+          key: 'status',
+          sortable: true
+        },
+        {
+          title: '操作',
+          key: 'action',
+          width: 130,
+          align: 'center',
+          render: (h, params) => {
+            return h('div', [
+              h('Button', {
+                props: {
+                  type: 'primary',
+                  size: 'small'
+                },
+                style: {
+                  marginRight: '5px'
+                },
+                on: {
+                  click: () => {
+                    // console.log('编辑')
+                    this.$router.push('/wechatinfos/' + params.row.id + '/edit')
+                  }
+                }
+              }, '编辑'),
+              h('Button', {
+                props: {
+                  type: 'error',
+                  size: 'small'
+                },
+                on: {
+                  click: () => {
+                    // console.log('删除')
+                    // console.log(params.row)
+                    this.showModal(params.row)
+                  }
+                }
+              }, '删除')
+            ])
+          }
+        }
+      ],
+      wechatinfos: [],
+      total: null,
+      current_page: null,
+      modal: false,
+      deleteWeChatInfo: null
+    }
+  },
+  created () {
+    this.getWeChatInfos()
+  },
+  methods: {
+    getWeChatInfos () {
+      this.$http.get('/wechatinfos').then((res) => {
+        // console.log(res.data)
+        this.wechatinfos = res.data.wechatinfos
+        this.total = res.data.total
+        this.current_page = res.data.current_page
+      })
+    },
+    pageChange (page) {
+      // console.log(page)
+      this.$http.get('/wechatinfos' + '?page=' + page).then((res) => {
+        this.wechatinfos = res.data.wechatinfos
+        this.total = res.data.total
+        this.current_page = res.data.current_page
+      })
+    },
+    showModal (row) {
+      this.modal = true
+      this.deleteWeChatInfo = row
+    },
+    ok () {
+      this.wechatinfos.splice(this.deleteWeChatInfo._index, 1)
+      this.$http.delete('/wechatinfos/' + this.deleteWeChatInfo.id).then((res) => {
+        this.pageChange(this.current_page)
+      })
+      this.$Message.info('已删除此公众号！')
+    },
+    cancel () {
+      this.$Message.info('您取消了操作！')
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.table {
+  margin-top: 20px;
+}
 </style>

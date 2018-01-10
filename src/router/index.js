@@ -13,17 +13,53 @@ const router = new Router({
       },
       children: [
         {
+          path: '/chart',
+          name: 'Chart',
+          component (resolve) {
+            require(['../pages/Chart.vue'], resolve)
+          }
+        },
+        {
           path: '/operators',
           name: 'OperatorTable',
           component (resolve) {
             require(['../pages/OperatorTable.vue'], resolve)
-          }
+          },
+          meta: {menuName: 'operators'}
         },
         {
           path: '/wechatinfos',
           name: 'WeChatInfoTable',
           component (resolve) {
             require(['../pages/WeChatInfoTable.vue'], resolve)
+          }
+        },
+        {
+          path: '/operators/new',
+          name: 'OperatorNew',
+          component (resolve) {
+            require(['../pages/OperatorNewAndEdit.vue'], resolve)
+          }
+        },
+        {
+          path: '/operators/:id/edit',
+          name: 'OperatorEdit',
+          component (resolve) {
+            require(['../pages/OperatorNewAndEdit.vue'], resolve)
+          }
+        },
+        {
+          path: '/operators/:id',
+          name: 'OperatorShow',
+          component (resolve) {
+            require(['../pages/OperatorShow.vue'], resolve)
+          }
+        },
+        {
+          path: '/wechatinfos/:id/edit',
+          name: 'WeChatInfoEdit',
+          component (resolve) {
+            require(['../pages/WeChatInfoEdit.vue'], resolve)
           }
         }
       ]
