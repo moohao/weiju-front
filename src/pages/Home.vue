@@ -1,28 +1,26 @@
 <template>
   <div class="layout">
     <Layout>
-      <Header :style="{background: '#fff'}">
+      <Header :style="{background: '#fff', padding: '0 20px'}">
         <Row>
-          <Col span="3">
+          <Col span="2">
             <img src="../assets/logo.png" height="60px">
           </Col>
-          <Col span="17">
+          <Col span="18">
             <h1>微聚-微信公众号管理平台</h1>
           </Col>
-          <Col span="1">
-            <Badge dot>
-              <Icon type="ios-bell-outline" size="20"></Icon>
-            </Badge>
-          </Col>
-          <Col span="3">
+          <Col span="4" style="text-align: center">
+          <Badge>
+            <Icon type="ios-bell-outline" size="20"></Icon>
+          </Badge>
+          &nbsp;&nbsp;&nbsp;&nbsp;
           <Dropdown>
             <a href="javascript:void(0)">
-              admin@qq.com
+              {{this.user.email}}
               <Icon type="arrow-down-b"></Icon>
             </a>
             <DropdownMenu slot="list">
               <DropdownItem><router-link to="/login">退出</router-link></DropdownItem>
-              <DropdownItem>修改</DropdownItem>
             </DropdownMenu>
           </Dropdown>
           </Col>
@@ -30,7 +28,7 @@
       </Header>
       <Layout>
         <Sider hide-trigger :style="{minHeight: '92vh'}">
-          <Menu :active-name="this.$route.name" theme="dark" width="auto">
+          <Menu :active-name="this.$route.meta.menuName" theme="dark" width="auto">
             <MenuGroup title="图表数据">
               <MenuItem name="Chart" @click.native="linkPage('Chart')">
                 <Icon type="pie-graph"></Icon>
@@ -38,11 +36,11 @@
               </MenuItem>
             </MenuGroup>
             <MenuGroup title="平台管理">
-              <MenuItem name="OperatorTable" @click.native="linkPage('OperatorTable')">
+              <MenuItem name="Operator" @click.native="linkPage('OperatorTable')">
                 <Icon type="person-stalker"></Icon>
                   运营者管理
               </MenuItem>
-              <MenuItem name="WeChatInfoTable" @click.native="linkPage('WeChatInfoTable')">
+              <MenuItem name="WeChatInfo" @click.native="linkPage('WeChatInfoTable')">
                 <Icon type="chatbubbles"></Icon>
                   微信公众号管理
               </MenuItem>
@@ -60,6 +58,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   data () {
     return {
@@ -75,6 +74,11 @@ export default {
         this.$router.push('/chart')
       }
     }
+  },
+  computed: {
+    ...mapState([
+      'user'
+    ])
   }
 }
 </script>
@@ -82,25 +86,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .layout{
-  border: 1px solid #d7dde4;
   background: #f5f7f9;
   position: relative;
-  border-radius: 4px;
   overflow: hidden;
-}
-.layout-logo{
-  width: 100px;
-  height: 30px;
-  background: #5b6270;
-  border-radius: 3px;
-  float: left;
-  position: relative;
-  top: 15px;
-  left: 20px;
-}
-.layout-nav{
-  width: 420px;
-  margin: 0 auto;
-  margin-right: 20px;
 }
 </style>

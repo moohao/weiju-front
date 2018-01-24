@@ -3,19 +3,19 @@
     <div class="logo"><img src="../assets/logo.png"></div>
     <div class="content">
       <h1 class="header">用户登录</h1>
-      <Form ref="formInline" :model="formInline" :rules="ruleInline" :inline="false">
-        <FormItem prop="user">
-          <Input type="text" v-model="formInline.user" placeholder="电子邮箱">
+      <Form ref="user" :model="user" :rules="ruleInline" :inline="false">
+        <FormItem prop="email">
+          <Input type="text" v-model="user.email" placeholder="电子邮箱">
             <Icon type="ios-person-outline" slot="prepend"></Icon>
           </Input>
         </FormItem>
         <FormItem prop="password">
-          <Input type="password" v-model="formInline.password" placeholder="密码">
+          <Input type="password" v-model="user.password" placeholder="密码">
             <Icon type="ios-locked-outline" slot="prepend"></Icon>
           </Input>
         </FormItem>
         <FormItem>
-          <Button type="success" @click="handleSubmit('formInline')" long>登录</Button>
+          <Button type="success" @click="handleSubmit('user')" long>登录</Button>
         </FormItem>
       </Form>
     </div>
@@ -35,12 +35,12 @@ export default {
   },
   data () {
     return {
-      formInline: {
-        user: '',
+      user: {
+        email: '',
         password: ''
       },
       ruleInline: {
-        user: [
+        email: [
           { required: true, message: '请输入邮箱', trigger: 'blur' },
           { type: 'email', message: '请输入正确的格式, 例如:lindo@lindo.io', trigger: 'blur' }
         ],
@@ -54,10 +54,25 @@ export default {
     handleSubmit (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          this.$Message.success('Success!')
+          this.signIn()
         } else {
-          this.$Message.error('Fail!')
+          this.$Message.error('验证失败')
         }
+      })
+    },
+    signIn () {
+      this.$http.post(global.LOGINURL + 'users/sign_in', {user: this.user}).then((res) => {
+        let authorization = res.headers.authorization
+        this.$Message.success('验证成功,正在登录')
+        if (authorization !== null) {
+          window.localStorage.setItem('authorization', authorization)
+          this.$http.defaults.headers.common['Authorization'] = authorization
+          this.$store.dispatch('loadUser').then(() => {
+            this.$router.push('/')
+          })
+        }
+      }).catch(() => {
+        this.$Message.error('用户或密码错误！')
       })
     }
   }

@@ -35,7 +35,10 @@ export default {
         },
         {
           title: '运营者',
-          key: 'operators'
+          key: 'operators',
+          render: (h, params) => {
+            return h('div', params.row.operators.map((v) => { return '<' + v.name + '>' }))
+          }
         },
         {
           title: '关注人数',

@@ -1,13 +1,9 @@
 <template>
   <div class="operator">
     <Row>
-        <Col span="22">
-          <Input placeholder="输入搜索内容" style="width: 200px"></Input>
-          <Button type="ghost" icon="ios-search">搜索</Button>
-        </Col>
-        <Col span="2">
-          <Button type="ghost" @click="createOperator">新建</Button>
-        </Col>
+      <Col offset="22" span="2">
+        <Button type="ghost" @click="createOperator">新建</Button>
+      </Col>
     </Row>
     <Table border :columns="columns" :data="operators" :stripe="true" class="table"></Table>
     <Modal
