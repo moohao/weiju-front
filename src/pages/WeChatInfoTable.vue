@@ -1,12 +1,13 @@
 <template>
   <div class="wechatinfo">
     <Row>
-        <Col span="22">
-          <Input placeholder="输入搜索内容" style="width: 200px"></Input>
-          <Button type="ghost" icon="ios-search">搜索</Button>
-        </Col>
-        <Col span="2">
-        </Col>
+      <Col span="21">
+        <Input placeholder="输入搜索内容" style="width: 200px"></Input>
+        <Button type="ghost" icon="ios-search">搜索</Button>
+      </Col>
+      <Col span="3">
+        <Button type="ghost" @click="pull">微信公众号授权</Button>
+      </Col>
     </Row>
     <Table border :columns="columns" :data="wechatinfos" :stripe="true" class="table"></Table>
     <Modal
@@ -142,6 +143,14 @@ export default {
     },
     cancel () {
       this.$Message.info('您取消了操作！')
+    },
+    pull () {
+      this.$http.get('/openweixin/l').then((res) => {
+        console.log(res.data)
+        let preAuthCode = res.data.pre_auth_code
+        let redirectURL = window.location.href
+        window.location.href = 'https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid=wxbd246bf45ac74904&pre_auth_code=' + preAuthCode + '&redirect_uri=' + redirectURL + '&auth_type='
+      })
     }
   }
 }
