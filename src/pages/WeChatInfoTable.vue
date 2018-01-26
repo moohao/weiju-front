@@ -67,10 +67,25 @@ export default {
         {
           title: '操作',
           key: 'action',
-          width: 130,
+          width: 180,
           align: 'center',
           render: (h, params) => {
             return h('div', [
+              h('Button', {
+                props: {
+                  type: 'primary',
+                  size: 'small'
+                },
+                style: {
+                  marginRight: '5px'
+                },
+                on: {
+                  click: () => {
+                    // console.log('编辑')
+                    this.$router.push('/wechatinfos/' + params.row.id)
+                  }
+                }
+              }, '查看'),
               h('Button', {
                 props: {
                   type: 'primary',
@@ -146,7 +161,7 @@ export default {
     },
     pull () {
       this.$http.get('/openweixin/l').then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         let preAuthCode = res.data.pre_auth_code
         let redirectURL = window.location.href
         window.location.href = 'https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid=wxbd246bf45ac74904&pre_auth_code=' + preAuthCode + '&redirect_uri=' + redirectURL + '&auth_type='

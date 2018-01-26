@@ -79,6 +79,17 @@ export default {
     ...mapState([
       'user'
     ])
+  },
+  created () {
+    // 判断是否有auth_code
+    let result = (window.location.href).match(/auth_code=(\S*)&expires/)
+    // console.log(result)
+    if (result !== null) {
+      this.$http.post('/openweixin/login', {auth_code: result[1]}).then((res) => {
+        // console.log(res.data)
+        window.location.href = '/#/wechatinfos'
+      })
+    }
   }
 }
 </script>

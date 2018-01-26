@@ -31,14 +31,6 @@ const router = new Router({
           meta: {menuName: 'Operator'}
         },
         {
-          path: '/wechatinfos',
-          name: 'WeChatInfoTable',
-          component (resolve) {
-            require(['../pages/WeChatInfoTable.vue'], resolve)
-          },
-          meta: {menuName: 'WeChatInfo'}
-        },
-        {
           path: '/operators/new',
           name: 'OperatorNew',
           component (resolve) {
@@ -63,10 +55,26 @@ const router = new Router({
           meta: {menuName: 'Operator'}
         },
         {
+          path: '/wechatinfos',
+          name: 'WeChatInfoTable',
+          component (resolve) {
+            require(['../pages/WeChatInfoTable.vue'], resolve)
+          },
+          meta: {menuName: 'WeChatInfo'}
+        },
+        {
           path: '/wechatinfos/:id/edit',
           name: 'WeChatInfoEdit',
           component (resolve) {
             require(['../pages/WeChatInfoEdit.vue'], resolve)
+          },
+          meta: {menuName: 'WeChatInfo'}
+        },
+        {
+          path: '/wechatinfos/:id',
+          name: 'WeChatInfoShow',
+          component (resolve) {
+            require(['../pages/WeChatInfoShow.vue'], resolve)
           },
           meta: {menuName: 'WeChatInfo'}
         }

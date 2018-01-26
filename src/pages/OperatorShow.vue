@@ -16,8 +16,11 @@
       <FormItem label="微信号">
         <Input v-model="operator.weixinhao"></Input>
       </FormItem>
-      <FormItem label="管理的公众号" v-for="(wechatinfo, index) in operator.wechatinfos" :key="index">
-        <Input v-model="wechatinfo.nick_name"></Input>
+      <FormItem label="管理的公众号">
+        <CheckboxGroup :value="operator.wechatinfos.map((v) => {return v.nick_name})">
+          <Checkbox :label="wechatinfo.nick_name" :key="wechatinfo.nick_name" v-for="wechatinfo in operator.wechatinfos">
+          </Checkbox>
+        </CheckboxGroup>
       </FormItem>
       <FormItem>
         <Button type="ghost" style="margin-left: 8px" @click="back">返回</Button>
