@@ -15,14 +15,6 @@ const router = new Router({
       },
       children: [
         {
-          path: '/chart',
-          name: 'Chart',
-          component (resolve) {
-            require(['../pages/Chart.vue'], resolve)
-          },
-          meta: {menuName: 'Chart'}
-        },
-        {
           path: '/operators',
           name: 'OperatorTable',
           component (resolve) {
@@ -75,6 +67,38 @@ const router = new Router({
           name: 'WeChatInfoShow',
           component (resolve) {
             require(['../pages/WeChatInfoShow.vue'], resolve)
+          },
+          meta: {menuName: 'WeChatInfo'}
+        },
+        {
+          path: '/wechatinfos/:id/article_infos',
+          name: 'ArticleInfoTable',
+          component (resolve) {
+            require(['../pages/ArticleInfoTable.vue'], resolve)
+          },
+          meta: {menuName: 'WeChatInfo'}
+        },
+        {
+          path: '/wechatinfos/:id/article_total_infos',
+          name: 'ArticleTotalInfoTable',
+          component (resolve) {
+            require(['../pages/ArticleTotalInfoTable.vue'], resolve)
+          },
+          meta: {menuName: 'WeChatInfo'}
+        },
+        {
+          path: '/wechatinfos/:id/seven_days_data',
+          name: 'SevenDaysData',
+          component (resolve) {
+            require(['../pages/SevenDaysData.vue'], resolve)
+          },
+          meta: {menuName: 'WeChatInfo'}
+        },
+        {
+          path: '/wechatinfos/:id/user_analyses',
+          name: 'UserAnalyses',
+          component (resolve) {
+            require(['../pages/UserAnalyses.vue'], resolve)
           },
           meta: {menuName: 'WeChatInfo'}
         }

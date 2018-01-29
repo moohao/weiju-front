@@ -10,7 +10,7 @@
           </Input>
         </FormItem>
         <FormItem prop="password">
-          <Input type="password" v-model="user.password" placeholder="密码">
+          <Input type="password" v-model="user.password" placeholder="密码" @on-enter="handleSubmit('user')">
             <Icon type="ios-locked-outline" slot="prepend"></Icon>
           </Input>
         </FormItem>
@@ -36,8 +36,8 @@ export default {
   data () {
     return {
       user: {
-        email: '',
-        password: ''
+        email: 'admin@qq.com',
+        password: '123123'
       },
       ruleInline: {
         email: [

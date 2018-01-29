@@ -1,11 +1,7 @@
 <template>
   <div class="wechatinfo">
     <Row>
-      <Col span="21">
-        <Input placeholder="输入搜索内容" style="width: 200px"></Input>
-        <Button type="ghost" icon="ios-search">搜索</Button>
-      </Col>
-      <Col span="3">
+      <Col offset="21" span="3">
         <Button type="ghost" @click="pull">微信公众号授权</Button>
       </Col>
     </Row>
@@ -65,6 +61,71 @@ export default {
           sortable: true
         },
         {
+          title: '用户数据总量变化',
+          key: 'action',
+          width: 90,
+          align: 'center',
+          render: (h, params) => {
+            return h('div', [
+              h('Button', {
+                props: {
+                  type: 'info',
+                  size: 'small'
+                },
+                style: {
+                  marginRight: '5px'
+                },
+                on: {
+                  click: () => {
+                    // console.log('编辑')
+                    this.$router.push('/wechatinfos/' + params.row.id + '/user_analyses')
+                  }
+                }
+              }, '查看')
+            ])
+          }
+        },
+        {
+          title: '图文数据',
+          key: 'action',
+          width: 130,
+          align: 'center',
+          render: (h, params) => {
+            return h('div', [
+              h('Button', {
+                props: {
+                  type: 'primary',
+                  size: 'small'
+                },
+                style: {
+                  marginRight: '5px'
+                },
+                on: {
+                  click: () => {
+                    // console.log('编辑')
+                    this.$router.push('/wechatinfos/' + params.row.id + '/article_infos')
+                  }
+                }
+              }, '单日'),
+              h('Button', {
+                props: {
+                  type: 'primary',
+                  size: 'small'
+                },
+                style: {
+                  marginRight: '5px'
+                },
+                on: {
+                  click: () => {
+                    // console.log('编辑')
+                    this.$router.push('/wechatinfos/' + params.row.id + '/article_total_infos')
+                  }
+                }
+              }, '群发')
+            ])
+          }
+        },
+        {
           title: '操作',
           key: 'action',
           width: 180,
@@ -73,7 +134,7 @@ export default {
             return h('div', [
               h('Button', {
                 props: {
-                  type: 'primary',
+                  type: 'info',
                   size: 'small'
                 },
                 style: {

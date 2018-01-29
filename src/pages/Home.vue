@@ -29,12 +29,6 @@
       <Layout>
         <Sider hide-trigger :style="{minHeight: '92vh'}">
           <Menu :active-name="this.$route.meta.menuName" theme="dark" width="auto">
-            <MenuGroup title="图表数据">
-              <MenuItem name="Chart" @click.native="linkPage('Chart')">
-                <Icon type="pie-graph"></Icon>
-                  控制面板
-              </MenuItem>
-            </MenuGroup>
             <MenuGroup title="平台管理">
               <MenuItem name="Operator" @click.native="linkPage('OperatorTable')">
                 <Icon type="person-stalker"></Icon>
@@ -73,6 +67,12 @@ export default {
       } else if (name === 'Chart') {
         this.$router.push('/chart')
       }
+    },
+    handleSpinShow () {
+      this.$Spin.show()
+      setTimeout(() => {
+        this.$Spin.hide()
+      }, 3000)
     }
   },
   computed: {
@@ -85,6 +85,7 @@ export default {
     let result = (window.location.href).match(/auth_code=(\S*)&expires/)
     // console.log(result)
     if (result !== null) {
+      this.handleSpinShow()
       this.$http.post('/openweixin/login', {auth_code: result[1]}).then((res) => {
         // console.log(res.data)
         window.location.href = '/#/wechatinfos'
