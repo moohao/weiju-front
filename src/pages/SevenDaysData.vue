@@ -35,13 +35,7 @@ export default {
           text: ''
         },
         tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'cross',
-            label: {
-              backgroundColor: '#6a7985'
-            }
-          }
+          trigger: 'axis'
         },
         legend: {
           data: ['图文页阅读人数', '图文页阅读次数', '原文页阅读人数', '原文页阅读次数', '分享人数', '分享次数', '收藏人数', '收藏次数']
@@ -74,62 +68,48 @@ export default {
             name: '图文页阅读人数',
             type: 'line',
             stack: '总量',
-            areaStyle: {normal: {}},
             data: this.sevenDaysData.map((v) => { return v.int_page_read_user })
           },
           {
             name: '图文页阅读次数',
             type: 'line',
             stack: '总量',
-            areaStyle: {normal: {}},
             data: this.sevenDaysData.map((v) => { return v.int_page_read_count })
           },
           {
             name: '原文页阅读人数',
             type: 'line',
             stack: '总量',
-            areaStyle: {normal: {}},
             data: this.sevenDaysData.map((v) => { return v.ori_page_read_user })
           },
           {
             name: '原文页阅读次数',
             type: 'line',
             stack: '总量',
-            areaStyle: {normal: {}},
             data: this.sevenDaysData.map((v) => { return v.ori_page_read_count })
           },
           {
             name: '分享人数',
             type: 'line',
             stack: '总量',
-            areaStyle: {normal: {}},
             data: this.sevenDaysData.map((v) => { return v.share_user })
           },
           {
             name: '分享次数',
             type: 'line',
             stack: '总量',
-            areaStyle: {normal: {}},
             data: this.sevenDaysData.map((v) => { return v.share_count })
           },
           {
             name: '收藏人数',
             type: 'line',
             stack: '总量',
-            areaStyle: {normal: {}},
             data: this.sevenDaysData.map((v) => { return v.add_to_fav_user })
           },
           {
             name: '收藏次数',
             type: 'line',
             stack: '总量',
-            label: {
-              normal: {
-                show: true,
-                position: 'top'
-              }
-            },
-            areaStyle: {normal: {}},
             data: this.sevenDaysData.map((v) => { return v.add_to_fav_count })
           }
         ]

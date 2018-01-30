@@ -4,9 +4,9 @@
       <Col span="16">
         <h2 style="margin-left: 20px;">用户数据总量变化</h2>
       </Col>
-      <Col span="8">
+      <!-- <Col span="8">
         <Button type="info" @click="pull">拉取昨日数据</Button>
-      </Col>
+      </Col> -->
     </Row>
     <!--为echarts准备一个具备大小的容器dom-->
   <div id="userAnalyses" style="width: 900px;height: 600px;"></div>
@@ -37,13 +37,7 @@ export default {
           text: ''
         },
         tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'cross',
-            label: {
-              backgroundColor: '#6a7985'
-            }
-          }
+          trigger: 'axis'
         },
         legend: {
           data: ['用户来源', '新增用户数量', '取关用户数量', '用户总数量']
@@ -90,45 +84,35 @@ export default {
             name: '用户来源',
             type: 'line',
             stack: '总量',
-            areaStyle: {normal: {}},
             data: this.userAnalyses.map((v) => { return v.user_source })
           },
           {
             name: '新增用户数量',
             type: 'line',
             stack: '总量',
-            areaStyle: {normal: {}},
             data: this.userAnalyses.map((v) => { return v.new_user })
           },
           {
             name: '取关用户数量',
             type: 'line',
             stack: '总量',
-            areaStyle: {normal: {}},
             data: this.userAnalyses.map((v) => { return v.cancel_user })
           },
           {
             name: '用户总数量',
             type: 'line',
             stack: '总量',
-            label: {
-              normal: {
-                show: true,
-                position: 'top'
-              }
-            },
-            areaStyle: {normal: {}},
             data: this.userAnalyses.map((v) => { return v.cumulate_user })
           }
         ]
       }
       myChart.setOption(option)
-    },
-    pull () {
-      this.$http.get('/wechatinfos/' + this.$route.params.id + '/pull_user_analysis').then((res) => {
-        this.$router.go(0)
-      })
     }
+    // pull () {
+    //   this.$http.get('/wechatinfos/' + this.$route.params.id + '/pull_user_analysis').then((res) => {
+    //     this.$router.go(0)
+    //   })
+    // }
   }
 }
 </script>

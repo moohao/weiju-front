@@ -1,10 +1,10 @@
 <template>
   <div class="operator">
-    <Row>
+    <!-- <Row>
       <Col offset="21" span="3">
         <Button type="ghost" @click="pull">拉取群发总数据</Button>
       </Col>
-    </Row>
+    </Row> -->
     <Table border :columns="columns" :data="articleTotalInfos" :stripe="true" class="table"></Table>
     <Page :total="total" show-elevator :current="current_page" @on-change="pageChange" show-total style="text-align: right;margin-top: 20px;"></Page>
   </div>
@@ -93,12 +93,12 @@ export default {
         this.total = res.data.total
         this.current_page = res.data.current_page
       })
-    },
-    pull () {
-      this.$http.get('/wechatinfos/' + this.$route.params.id + '/pull_articletotal_info').then((res) => {
-        this.$router.go(0)
-      })
     }
+    // pull () {
+    //   this.$http.get('/wechatinfos/' + this.$route.params.id + '/pull_articletotal_info').then((res) => {
+    //     this.$router.go(0)
+    //   })
+    // }
   }
 }
 </script>
