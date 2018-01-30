@@ -1,8 +1,9 @@
 <template>
   <div class="wechatinfo">
     <Row>
-      <Col offset="21" span="3">
-        <Button type="ghost" @click="pull">微信公众号授权</Button>
+      <Col offset="20" span="4">
+        <!-- <Button type="ghost" @click="pull">微信公众号授权</Button> -->
+        <img src="../assets/wx-icon.png" @click="pull" style="cursor:pointer">
       </Col>
     </Row>
     <Table border :columns="columns" :data="wechatinfos" :stripe="true" class="table"></Table>

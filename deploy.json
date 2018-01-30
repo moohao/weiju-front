@@ -1,0 +1,15 @@
+{
+  "server": "deployer@101.236.47.74",
+  "port": 22,
+  "server_dir": "/var/www/weiju-front",
+  "repo": "git@github.com:moohao/weiju-front.git",
+  "prj_git_relative_dir": "",
+  "branch": "master",
+  "force_regenerate_git_dir": false,
+  "shared_dirs": [
+  ],
+  "prerun": [
+    "yarn install"
+  ],
+  "run_cmd": "yarn run build"
+}
