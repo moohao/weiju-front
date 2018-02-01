@@ -36,8 +36,8 @@ export default {
   data () {
     return {
       user: {
-        email: 'admin@qq.com',
-        password: '123123'
+        email: '',
+        password: ''
       },
       ruleInline: {
         email: [

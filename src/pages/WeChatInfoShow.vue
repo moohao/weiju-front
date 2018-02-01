@@ -28,13 +28,13 @@
         <Input v-if="wechatinfo.service_type_info === 2" value="服务号"></Input>
       </FormItem>
       <FormItem label="授权方认证类型">
-        <Input v-if="wechatinfo.service_type_info === -1" value="未认证"></Input>
-        <Input v-if="wechatinfo.service_type_info === 0" value="微信认证"></Input>
-        <Input v-if="wechatinfo.service_type_info === 1" value="新浪微博认证"></Input>
-        <Input v-if="wechatinfo.service_type_info === 2" value="腾讯微博认证"></Input>
-        <Input v-if="wechatinfo.service_type_info === 3" value="资质认证通过、还未通过名称认证，但通过了新浪微博认证"></Input>
-        <Input v-if="wechatinfo.service_type_info === 4" value="资质认证通过、还未通过名称认证"></Input>
-        <Input v-if="wechatinfo.service_type_info === 5" value="资质认证通过、还未通过名称认证，但通过了腾讯微博认证"></Input>
+        <Input v-if="wechatinfo.verify_type_info === -1" value="未认证"></Input>
+        <Input v-if="wechatinfo.verify_type_info === 0" value="微信认证"></Input>
+        <Input v-if="wechatinfo.verify_type_info === 1" value="新浪微博认证"></Input>
+        <Input v-if="wechatinfo.verify_type_info === 2" value="腾讯微博认证"></Input>
+        <Input v-if="wechatinfo.verify_type_info === 3" value="资质认证通过、还未通过名称认证，但通过了新浪微博认证"></Input>
+        <Input v-if="wechatinfo.verify_type_info === 4" value="资质认证通过、还未通过名称认证"></Input>
+        <Input v-if="wechatinfo.verify_type_info === 5" value="资质认证通过、还未通过名称认证，但通过了腾讯微博认证"></Input>
       </FormItem>
       <FormItem label="授权方公众号的原始ID">
         <Input v-model="wechatinfo.user_name"></Input>
@@ -59,15 +59,6 @@
         <CheckboxGroup v-model="wechatinfo.func_info">
           <Checkbox :label="func_info.label" :key="func_info.label" v-for="func_info in func_infos">{{func_info.value}}</Checkbox>
         </CheckboxGroup>
-      </FormItem>
-      <FormItem label="需要验证">
-        <Input v-model="wechatinfo.need_confirm"></Input>
-      </FormItem>
-      <FormItem label="已经验证">
-        <Input v-model="wechatinfo.already_confirm"></Input>
-      </FormItem>
-      <FormItem label="可以验证">
-        <Input v-model="wechatinfo.can_confirm"></Input>
       </FormItem>
       <FormItem>
         <Button type="ghost" style="margin-left: 8px" @click="back">返回</Button>

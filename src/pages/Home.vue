@@ -73,6 +73,28 @@ export default {
       setTimeout(() => {
         this.$Spin.hide()
       }, 3000)
+    },
+    instance (type) {
+      switch (type) {
+        case 'success':
+          this.$Modal.success({
+            title: '公众号授权',
+            content: '微信公众号授权登录成功!点击确定获取公众号信息!',
+            onOk: () => {
+              window.location.href = '/#/wechatinfos'
+            }
+          })
+          break
+        case 'error':
+          this.$Modal.error({
+            title: '公众号授权',
+            content: '微信公众号授权登录失败!请您重新授权!',
+            onOk: () => {
+              window.location.href = '/#/wechatinfos'
+            }
+          })
+          break
+      }
     }
   },
   computed: {
@@ -88,7 +110,10 @@ export default {
       this.handleSpinShow()
       this.$http.post('/openweixin/login', {auth_code: result[1]}).then((res) => {
         // console.log(res.data)
-        window.location.href = '/#/wechatinfos'
+        this.instance('success')
+      }).catch(() => {
+        // console.log(err.response)
+        this.instance('error')
       })
     }
   }
