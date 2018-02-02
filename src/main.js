@@ -21,7 +21,7 @@ if (authorization !== null) {
   axios.defaults.headers.common['Authorization'] = authorization
 }
 if (env === 'production') {
-  axios.defaults.baseURL = 'http://weiju.00603.top/api/v1/admin/'
+  axios.defaults.baseURL = 'http://weiju.00603.top/api/v1/'
 } else {
   axios.defaults.baseURL = 'http://weiju.lindo.io/api/v1/'
 }
