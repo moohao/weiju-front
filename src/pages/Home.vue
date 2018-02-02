@@ -126,5 +126,6 @@ export default {
   background: #f5f7f9;
   position: relative;
   overflow: hidden;
+  min-width: 1200px;
 }
 </style>
