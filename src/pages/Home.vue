@@ -72,7 +72,7 @@ export default {
       this.$Spin.show()
       setTimeout(() => {
         this.$Spin.hide()
-      }, 3000)
+      }, 1000)
     },
     instance (type) {
       switch (type) {
