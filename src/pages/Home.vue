@@ -81,7 +81,7 @@ export default {
             title: '公众号授权',
             content: '微信公众号授权登录成功!点击确定获取公众号信息!',
             onOk: () => {
-              window.location.href = '/#/wechatinfos'
+              window.location.href = '/admin/#/wechatinfos'
             }
           })
           break
@@ -90,7 +90,7 @@ export default {
             title: '公众号授权',
             content: '微信公众号授权登录失败!请您重新授权!',
             onOk: () => {
-              window.location.href = '/#/wechatinfos'
+              window.location.href = '/admin/#/wechatinfos'
             }
           })
           break
