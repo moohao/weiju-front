@@ -13,8 +13,6 @@ Vue.use(iView)
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
 
-axios.defaults.timeout = 5000
-
 let env = process.env.NODE_ENV
 let authorization = window.localStorage.getItem('authorization')
 if (authorization !== null) {
