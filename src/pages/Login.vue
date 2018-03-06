@@ -1,7 +1,7 @@
 <template>
   <div class="login">
-    <div class="logo"><img src="../assets/logo.png"></div>
     <div class="content">
+      <div class="logo"><img src="../assets/fw.jpeg"></div>
       <h1 class="header">用户登录</h1>
       <Form ref="user" :model="user" :rules="ruleInline" :inline="false">
         <FormItem prop="email">
@@ -86,6 +86,7 @@ body {
   padding: 0;
 }
 .login {
+  min-width: 1200px;
   background-color: rgb(60, 60, 60);
   height: 100%;
   width: 100%;
@@ -93,7 +94,6 @@ body {
 }
 .logo {
   width: 80px;
-  margin-top: 200px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -101,6 +101,7 @@ body {
   height: 80px;
 }
 .content {
+  margin-top: 200px;
   background-color: rgb(255, 255, 255);
   width: 400px;
   margin-left: auto;
@@ -110,7 +111,7 @@ body {
 }
 .header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 .footer {
   width: 200px;

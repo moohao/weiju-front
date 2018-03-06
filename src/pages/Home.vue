@@ -4,7 +4,7 @@
       <Header :style="{background: '#fff', padding: '0 20px'}">
         <Row>
           <Col span="2">
-            <img src="../assets/logo.png" height="60px">
+            <img src="../assets/fw.jpeg" height="60px">
           </Col>
           <Col span="18">
             <h1>微聚-微信公众号管理平台</h1>
